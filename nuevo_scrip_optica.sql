@@ -86,17 +86,12 @@ DROP TABLE IF EXISTS `gafas`;
 CREATE TABLE `gafas` (
   `id_gafas` int NOT NULL AUTO_INCREMENT,
   `marca` varchar(45) DEFAULT NULL,
-  `montura_pasta` varchar(45) DEFAULT NULL,
-  `montura_flotante` varchar(45) DEFAULT NULL,
-  `montura_metalica` varchar(45) DEFAULT NULL,
   `color_montura` varchar(45) DEFAULT NULL,
   `color_vidrio_izquierdo` varchar(45) DEFAULT NULL,
   `color_vidrio_derecho` varchar(45) DEFAULT NULL,
   `precio` decimal(8,2) DEFAULT NULL,
-  `id_proveedor` int DEFAULT NULL,
-  PRIMARY KEY (`id_gafas`),
-  KEY `id_proveedor_idx` (`id_proveedor`),
-  CONSTRAINT `id_proveedor` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`id_proveedor`)
+  `montura_typo` enum('pasta','flotante','metalica') NOT NULL,
+  PRIMARY KEY (`id_gafas`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,7 +101,7 @@ CREATE TABLE `gafas` (
 
 LOCK TABLES `gafas` WRITE;
 /*!40000 ALTER TABLE `gafas` DISABLE KEYS */;
-INSERT INTO `gafas` VALUES (1,'Ray-Ban','Sí','No','No','Negro','Transparente','Transparente',129.99,1),(2,'Hawkers','Sí','No','No','Azul Marino','Gris','Gris',69.50,2),(3,'Oakley','No','No','Sí','Plata','Verde','Verde',159.95,3),(4,'Police','No','Sí','No','Marrón','Marrón Claro','Marrón Claro',112.40,4),(5,'Carolina Herrera','Sí','No','No','Rojo Burdeos','Rosa','Rosa',142.75,5),(6,'Gucci','No','No','Sí','Dorado','Verde','Verde',199.99,1),(7,'Mango','Sí','Sí','No','Transparente','Azul Claro','Azul Claro',84.60,2),(8,'Tommy Hilfiger','No','No','Sí','Negro Mate','Gris Oscuro','Gris Oscuro',173.20,3),(9,'Vogue Eyewear','Sí','No','No','Rosa Pastel','Transparente','Transparente',120.00,4),(10,'Carrera','No','No','Sí','Azul Metálico','Verde Claro','Verde Claro',155.80,5);
+INSERT INTO `gafas` VALUES (1,'Ray-Ban','Negro','Transparente','Transparente',129.99,'pasta'),(2,'Hawkers','Azul Marino','Gris','Gris',69.50,'pasta'),(3,'Oakley','Plata','Verde','Verde',159.95,'pasta'),(4,'Police','Marrón','Marrón Claro','Marrón Claro',112.40,'pasta'),(5,'Carolina Herrera','Rojo Burdeos','Rosa','Rosa',142.75,'pasta'),(6,'Gucci','Dorado','Verde','Verde',199.99,'pasta'),(7,'Mango','Transparente','Azul Claro','Azul Claro',84.60,'pasta'),(8,'Tommy Hilfiger','Negro Mate','Gris Oscuro','Gris Oscuro',173.20,'pasta'),(9,'Vogue Eyewear','Rosa Pastel','Transparente','Transparente',120.00,'pasta'),(10,'Carrera','Azul Metálico','Verde Claro','Verde Claro',155.80,'pasta');
 /*!40000 ALTER TABLE `gafas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,6 +129,30 @@ LOCK TABLES `graduacion` WRITE;
 /*!40000 ALTER TABLE `graduacion` DISABLE KEYS */;
 INSERT INTO `graduacion` VALUES (1,-1.25,-1.5),(2,0,-0.75),(3,-2,-1.75),(4,-0.5,0),(5,-3.25,-3),(6,-1,-1),(7,-2.25,-2.5),(8,0.5,0.25),(9,-0.75,-1.25),(10,-4,-3.75);
 /*!40000 ALTER TABLE `graduacion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `marcas`
+--
+
+DROP TABLE IF EXISTS `marcas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `marcas` (
+  `id_marcas` int NOT NULL,
+  `modelo` varchar(45) DEFAULT NULL,
+  `id_proveedor` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_marcas`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `marcas`
+--
+
+LOCK TABLES `marcas` WRITE;
+/*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `marcas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -214,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-18 17:44:08
+-- Dump completed on 2026-02-09 12:41:41

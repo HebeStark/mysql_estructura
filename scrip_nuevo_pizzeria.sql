@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `animales`
+--
+
+DROP TABLE IF EXISTS `animales`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `animales` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `tipo` varchar(45) NOT NULL,
+  `raza` varchar(45) DEFAULT NULL,
+  `edad` int DEFAULT NULL,
+  `peso` float DEFAULT NULL,
+  `estado` enum('adopcion','adoptado') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `animales`
+--
+
+LOCK TABLES `animales` WRITE;
+/*!40000 ALTER TABLE `animales` DISABLE KEYS */;
+/*!40000 ALTER TABLE `animales` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categoria`
 --
 
@@ -288,4 +316,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-18 17:38:01
+-- Dump completed on 2026-02-09 13:31:46
