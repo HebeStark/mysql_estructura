@@ -16,34 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `animales`
---
-
-DROP TABLE IF EXISTS `animales`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `animales` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  `tipo` varchar(45) NOT NULL,
-  `raza` varchar(45) DEFAULT NULL,
-  `edad` int DEFAULT NULL,
-  `peso` float DEFAULT NULL,
-  `estado` enum('adopcion','adoptado') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `animales`
---
-
-LOCK TABLES `animales` WRITE;
-/*!40000 ALTER TABLE `animales` DISABLE KEYS */;
-/*!40000 ALTER TABLE `animales` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `categoria`
 --
 
@@ -165,34 +137,6 @@ INSERT INTO `pedidos` VALUES (1,'2025-10-18 11:25:00','domicilio',21.9,2,2),(2,'
 UNLOCK TABLES;
 
 --
--- Table structure for table `pizza`
---
-
-DROP TABLE IF EXISTS `pizza`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pizza` (
-  `id_pizza` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) DEFAULT NULL,
-  `descripcion` varchar(45) DEFAULT NULL,
-  `imagen` blob,
-  `precio` float DEFAULT NULL,
-  PRIMARY KEY (`id_pizza`),
-  UNIQUE KEY `id_pizza_UNIQUE` (`id_pizza`),
-  CONSTRAINT `id_categoria` FOREIGN KEY (`id_pizza`) REFERENCES `categoria` (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pizza`
---
-
-LOCK TABLES `pizza` WRITE;
-/*!40000 ALTER TABLE `pizza` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pizza` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `producto`
 --
 
@@ -201,13 +145,13 @@ DROP TABLE IF EXISTS `producto`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `producto` (
   `id_producto` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(40) NOT NULL,
   `descripcion` varchar(70) NOT NULL,
   `imagen` blob,
   `precio` float DEFAULT NULL,
   `id_categoria` int DEFAULT NULL,
+  `nombre` enum('hamburguesas','pizzas','bebidas') NOT NULL,
   PRIMARY KEY (`id_producto`),
-  UNIQUE KEY `id_producto_UNIQUE` (`id_producto`)
+  UNIQUE KEY `id_producto_UNIQUE` (`id_producto`) /*!80000 INVISIBLE */
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,7 +161,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Pizza Margarita','Tomate, mozzarella y albahaca fresca',NULL,8.5,1),(2,'Pizza Barbacoa','Carne, salsa barbacoa, mozzarella y cebolla',NULL,10.9,1),(3,'Pizza Trufa Gourmet','Crema de trufa, parmesano y jamón ibérico',NULL,14.5,2),(4,'Hamburguesa Clásica','Carne de vacuno, lechuga, tomate y queso cheddar',NULL,7.9,3),(5,'Coca-Cola 500ml','Botella 500ml',NULL,2.5,4);
+INSERT INTO `producto` VALUES (1,'Tomate, mozzarella y albahaca fresca',NULL,8.5,1,'hamburguesas'),(2,'Carne, salsa barbacoa, mozzarella y cebolla',NULL,10.9,1,'hamburguesas'),(3,'Crema de trufa, parmesano y jamón ibérico',NULL,14.5,2,'hamburguesas'),(4,'Carne de vacuno, lechuga, tomate y queso cheddar',NULL,7.9,3,'hamburguesas'),(5,'Botella 500ml',NULL,2.5,4,'hamburguesas');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-09 13:31:46
+-- Dump completed on 2026-02-17 11:40:26

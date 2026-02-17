@@ -8,4 +8,4 @@ Este proyecto modela la base de datos de una pizzería con servicio de pedidos o
 
 ## Herramientas utilizadas
 
-MySQL Workbench para el diseño del Diagrama Entidad–Relación (DER) y scrip.
+MySQL Workbench para el diseño del Diagrama Entidad–Relación (DER).
